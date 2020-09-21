@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AssemblyName>MarkGravestock.OrderManagement.Api</AssemblyName>
+        <RootNamespace>MarkGravestock.OrderManagement.Api</RootNamespace>
+        <LangVersion>9</LangVersion>
+        <Nullable>annotations</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.1" />
+    </ItemGroup>
+
+
+</Project>

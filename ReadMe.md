@@ -1,0 +1,19 @@
+### Trivial Bank Account implementation 
+
+#### Objectives
+
+- Review current ASP.NET Core related tools and technologies
+- Use a Hexagonal Architecture
+    - This pattern was first proposed by Alistair Cockburn and is also known as the Ports and Adapters pattern, and aims to produce loosely coupled designs
+    where direction of the coupling in the system is from the outer infrastructural concerns to the inner application. [DIP]
+- Use Domain Driven Design tactical patterns for the Application and Domain Layers
+    - This will be a made up domain model, normally this would be created
+
+### Notes
+    
+- Create ASP.NET Core solution with following attributes
+    - API Documentation using [OpenApi]() implmented by [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
+    - Structured Logging using [Serilog]
+    - Reporting Problem Details using [RFC7807] implemented by [Problem Details](https://github.com/khellang/Middleware)
+    - Command/Query/Event dispatching implemented by [Mediatr]
+    

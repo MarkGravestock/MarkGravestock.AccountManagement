@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkGravestock.AccountManagement.Api", "MarkGravestock.AccountManagement.Api\MarkGravestock.AccountManagement.Api.csproj", "{77C0DD03-8CB2-48AF-AEDB-3AEECF5E4CDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkGravestock.AccountManagement.Tests", "MarkGravestock.AccountManagement.Tests\MarkGravestock.AccountManagement.Tests.csproj", "{B6FAB702-5C08-404D-8E05-157CA14360FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{4821E41E-AAEE-4EB0-B2A6-6C91B5E8C708}"
+ProjectSection(SolutionItems) = preProject
+	ReadMe.md = ReadMe.md
+EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77C0DD03-8CB2-48AF-AEDB-3AEECF5E4CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77C0DD03-8CB2-48AF-AEDB-3AEECF5E4CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77C0DD03-8CB2-48AF-AEDB-3AEECF5E4CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77C0DD03-8CB2-48AF-AEDB-3AEECF5E4CDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6FAB702-5C08-404D-8E05-157CA14360FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6FAB702-5C08-404D-8E05-157CA14360FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6FAB702-5C08-404D-8E05-157CA14360FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6FAB702-5C08-404D-8E05-157CA14360FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
