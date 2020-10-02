@@ -16,18 +16,19 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         }
 
         [HttpPost]
-        public IActionResult CreateAccount([FromBody]CreateAccountRequest createAccountRequest)
+        public IActionResult CreateAccount([FromBody] CreateAccountRequest createAccountRequest)
         {
+            //TODO: Move into application/mediatr
             var newAccount = Account.CreateFor(createAccountRequest.CustomerId);
 
             accountRepository.Save(newAccount);
-            
+
             var createdPath = Url.RouteUrl(nameof(GetAccount), new {accountId = newAccount.Id});
-            var createdUri = new Uri( $"{Request.Scheme}://{Request.Host}{createdPath}", UriKind.Absolute);
-            
+            var createdUri = new Uri($"{Request.Scheme}://{Request.Host}{createdPath}", UriKind.Absolute);
+
             return Created(createdUri, null);
         }
-        
+
         [HttpGet("{accountId:guid}", Name = nameof(GetAccount))]
         public IActionResult GetAccount(Guid accountId)
         {

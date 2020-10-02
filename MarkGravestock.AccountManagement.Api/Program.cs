@@ -1,9 +1,9 @@
 using System;
 using Autofac.Extensions.DependencyInjection;
+using MarkGravestock.AccountManagement.Api.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using Serilog.Events;
 
 namespace MarkGravestock.AccountManagement.Api
 {
@@ -11,7 +11,7 @@ namespace MarkGravestock.AccountManagement.Api
     {
         public static int Main(string[] args)
         {
-            Log.Logger = CreateLoggerConfiguration()
+            Log.Logger = Logger.CreateLoggerConfiguration()
                 .CreateLogger();
 
             try
@@ -31,20 +31,12 @@ namespace MarkGravestock.AccountManagement.Api
             }
         }
 
-        private static LoggerConfiguration CreateLoggerConfiguration()
+        private static IHostBuilder CreateHostBuilder(string[] args)
         {
-            return new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
-                .Enrich.FromLogContext()
-                .WriteTo.Console();
-        }
-
-        private static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+            return Host.CreateDefaultBuilder(args)
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .UseSerilog()
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+        }
     }
 }

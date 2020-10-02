@@ -14,41 +14,35 @@ namespace MarkGravestock.AccountManagement.Api
     public class Startup
     {
         private IConfiguration configuration;
-        public ILifetimeScope AutofacContainer { get; private set; }
 
         public Startup(IConfiguration configuration)
         {
             this.configuration = configuration;
         }
 
+        public ILifetimeScope AutofacContainer { get; private set; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
+
             services.AddOpenApiDocumentation();
         }
-        
+
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            // Register your own things directly with Autofac here. Don't
-            // call builder.Populate(), that happens in AutofacServiceProviderFactory
-            // for you.
             builder.RegisterModule<DatabaseModule>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
-            {
                 app.UseHsts();
-            }
 
             AutofacContainer = app.ApplicationServices.GetAutofacRoot();
-            
+
             app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
@@ -58,7 +52,7 @@ namespace MarkGravestock.AccountManagement.Api
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-            
+
             app.UseSwagger();
 
             app.UseOpenApiDocumentation();
