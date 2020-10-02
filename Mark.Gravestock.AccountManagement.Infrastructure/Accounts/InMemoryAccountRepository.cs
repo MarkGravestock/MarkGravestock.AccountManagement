@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Mark.Gravestock.AccountManagement.Domain.Accounts;
+using Optional;
 
 namespace Mark.Gravestock.AccountManagement.Infrastructure.Accounts
 {
@@ -13,9 +14,9 @@ namespace Mark.Gravestock.AccountManagement.Infrastructure.Accounts
             accountsByKey[account.Id] = account;
         }
 
-        public Account Get(Guid accountId)
+        public Option<Account> Get(Guid accountId)
         {
-            return accountsByKey[accountId];
+            return accountsByKey.ContainsKey(accountId) ? Option.Some(accountsByKey[accountId]) : Option.None<Account>();
         }
     }
 }

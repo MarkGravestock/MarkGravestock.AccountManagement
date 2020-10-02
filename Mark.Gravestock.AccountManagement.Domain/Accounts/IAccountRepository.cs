@@ -1,10 +1,11 @@
 ﻿using System;
+using Optional;
 
 namespace Mark.Gravestock.AccountManagement.Domain.Accounts
 {
     public interface IAccountRepository
     {
         void Save(Account account);
-        Account Get(Guid accountId);
+        Option<Account> Get(Guid accountId);
     }
 }

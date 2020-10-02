@@ -10,6 +10,8 @@ using Xunit;
 
 namespace MarkGravestock.OrderManagement.Tests
 {
+    // Test List
+    // 1. Create across service instances
     public class CreateAccountApiTest
     {
         [Fact]
@@ -36,6 +38,18 @@ namespace MarkGravestock.OrderManagement.Tests
             result.CustomerId.Should().Be(aCustomerId);
         }
 
+        [Fact]
+        public async Task it_returns_not_found_for_invalid_account_id()
+        {
+            using var factory = new WebApplicationFactory<Startup>();
+            
+            var client = factory.CreateClient();
+
+            var responseMessage = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get,"/accounts/" + Guid.NewGuid()));
+
+            responseMessage.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        }
+        
         private class AccountDto
         {
             public Guid Id { get; set; }

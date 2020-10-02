@@ -31,7 +31,7 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         [HttpGet("{accountId:guid}", Name = nameof(GetAccount))]
         public IActionResult GetAccount(Guid accountId)
         {
-            return Ok(accountRepository.Get(accountId));
+            return accountRepository.Get(accountId).Map<IActionResult>(Ok).ValueOr(NotFound());
         }
     }
 }
