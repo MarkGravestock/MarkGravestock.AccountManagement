@@ -18,14 +18,11 @@ namespace MarkGravestock.OrderManagement.Api.Accounts
         [HttpPost]
         public IActionResult CreateAccount([FromBody]CreateAccountRequest createAccountRequest)
         {
-            var newAccountId = Guid.NewGuid();
-            
-            var newAccount = new Account(newAccountId, createAccountRequest.CustomerId);
+            var newAccount = Account.CreateFor(createAccountRequest.CustomerId);
 
             accountRepository.Save(newAccount);
             
-            var createdPath = Url.RouteUrl(nameof(GetAccount), new {accountId = newAccountId});
-
+            var createdPath = Url.RouteUrl(nameof(GetAccount), new {accountId = newAccount.Id});
             var createdUri = new Uri( $"{Request.Scheme}://{Request.Host}{createdPath}", UriKind.Absolute);
             
             return Created(createdUri, null);
@@ -40,7 +37,7 @@ namespace MarkGravestock.OrderManagement.Api.Accounts
 
     internal class InMemoryAccountRepository : IAccountRepository
     {
-        private IDictionary<Guid, Account> accountsByKey = new Dictionary<Guid, Account>();
+        private readonly IDictionary<Guid, Account> accountsByKey = new Dictionary<Guid, Account>();
         
         public void Save(Account account)
         {
@@ -68,6 +65,11 @@ namespace MarkGravestock.OrderManagement.Api.Accounts
         {
             Id = id;
             CustomerId = customerId;
+        }
+        
+        public static Account CreateFor(Guid customerId)
+        {
+            return new Account(Guid.NewGuid(), customerId);
         }
     }
 }

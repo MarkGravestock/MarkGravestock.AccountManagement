@@ -1,6 +1,5 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using MarkGravestock.OrderManagement.Api.Accounts;
 using MarkGravestock.OrderManagement.Api.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +32,7 @@ namespace MarkGravestock.OrderManagement.Api
             // Register your own things directly with Autofac here. Don't
             // call builder.Populate(), that happens in AutofacServiceProviderFactory
             // for you.
-            builder.RegisterType<InMemoryAccountRepository>().As<IAccountRepository>().SingleInstance();
+            builder.RegisterModule<AccountsModule>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
