@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Mark.Gravestock.AccountManagement.Domain.Accounts;
 using Optional;
 
-namespace Mark.Gravestock.AccountManagement.Infrastructure.Accounts
+namespace MarkGravestock.AccountManagement.Infrastructure.Accounts
 {
     internal class InMemoryAccountRepository : IAccountRepository
     {

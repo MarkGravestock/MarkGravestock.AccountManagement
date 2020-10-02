@@ -14,8 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Mark.Gravestock.AccountManagement.Domain\Mark.Gravestock.AccountManagement.Domain.csproj" />
-      <ProjectReference Include="..\Mark.Gravestock.AccountManagement.Infrastructure\Mark.Gravestock.AccountManagement.Infrastructure.csproj" />
+      <ProjectReference Include="..\MarkGravestock.AccountManagement.Domain\MarkGravestock.AccountManagement.Domain.csproj" />
+      <ProjectReference Include="..\MarkGravestock.AccountManagement.Infrastructure\MarkGravestock.AccountManagement.Infrastructure.csproj" />
     </ItemGroup>
 
 

@@ -1,7 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Mark.Gravestock.AccountManagement.Infrastructure.Configuration;
 using MarkGravestock.AccountManagement.Api.Configuration;
+using MarkGravestock.AccountManagement.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -33,7 +33,7 @@ namespace MarkGravestock.AccountManagement.Api
             // Register your own things directly with Autofac here. Don't
             // call builder.Populate(), that happens in AutofacServiceProviderFactory
             // for you.
-            builder.RegisterModule<RepositoryModule>();
+            builder.RegisterModule<DatabaseModule>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
