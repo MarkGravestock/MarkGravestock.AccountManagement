@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using MarkGravestock.OrderManagement.Api.Configuration;
+using Mark.Gravestock.AccountManagement.Infrastructure.Configuration;
+using MarkGravestock.AccountManagement.Api.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 
-namespace MarkGravestock.OrderManagement.Api
+namespace MarkGravestock.AccountManagement.Api
 {
     public class Startup
     {
@@ -32,7 +33,7 @@ namespace MarkGravestock.OrderManagement.Api
             // Register your own things directly with Autofac here. Don't
             // call builder.Populate(), that happens in AutofacServiceProviderFactory
             // for you.
-            builder.RegisterModule<AccountsModule>();
+            builder.RegisterModule<RepositoryModule>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

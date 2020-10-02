@@ -2,8 +2,6 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <AssemblyName>MarkGravestock.OrderManagement.Api</AssemblyName>
-        <RootNamespace>MarkGravestock.OrderManagement.Api</RootNamespace>
         <LangVersion>9</LangVersion>
         <Nullable>annotations</Nullable>
     </PropertyGroup>
@@ -12,6 +10,11 @@
       <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.0.1" />
       <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Mark.Gravestock.AccountManagement.Domain\Mark.Gravestock.AccountManagement.Domain.csproj" />
+      <ProjectReference Include="..\Mark.Gravestock.AccountManagement.Infrastructure\Mark.Gravestock.AccountManagement.Infrastructure.csproj" />
     </ItemGroup>
 
 

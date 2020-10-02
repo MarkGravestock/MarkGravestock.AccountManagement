@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using FluentAssertions;
-using MarkGravestock.OrderManagement.Api;
+using MarkGravestock.AccountManagement.Api;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 

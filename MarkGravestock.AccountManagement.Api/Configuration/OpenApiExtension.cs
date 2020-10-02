@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace MarkGravestock.OrderManagement.Api.Configuration
+namespace MarkGravestock.AccountManagement.Api.Configuration
 {
     public static class OpenApiExtension
     {

@@ -5,7 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
 
-namespace MarkGravestock.OrderManagement.Api
+namespace MarkGravestock.AccountManagement.Api
 {
     public static class Program
     {

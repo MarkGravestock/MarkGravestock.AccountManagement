@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MarkGravestock.OrderManagement.Api.Accounts
+namespace MarkGravestock.AccountManagement.Api.Accounts
 {
     public struct CreateAccountRequest
     {

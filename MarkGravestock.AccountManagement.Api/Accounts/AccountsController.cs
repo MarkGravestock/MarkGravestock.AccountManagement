@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using Mark.Gravestock.AccountManagement.Domain.Accounts;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MarkGravestock.OrderManagement.Api.Accounts
+namespace MarkGravestock.AccountManagement.Api.Accounts
 {
     [ApiController]
     [Route("accounts")]
@@ -32,44 +32,6 @@ namespace MarkGravestock.OrderManagement.Api.Accounts
         public IActionResult GetAccount(Guid accountId)
         {
             return Ok(accountRepository.Get(accountId));
-        }
-    }
-
-    internal class InMemoryAccountRepository : IAccountRepository
-    {
-        private readonly IDictionary<Guid, Account> accountsByKey = new Dictionary<Guid, Account>();
-        
-        public void Save(Account account)
-        {
-            accountsByKey[account.Id] = account;
-        }
-
-        public Account Get(Guid accountId)
-        {
-            return accountsByKey[accountId];
-        }
-    }
-
-    public interface IAccountRepository
-    {
-        void Save(Account account);
-        Account Get(Guid accountId);
-    }
-
-    public class Account
-    {
-        public Guid Id { get; }
-        public Guid CustomerId { get; }
-
-        public Account(Guid id, Guid customerId)
-        {
-            Id = id;
-            CustomerId = customerId;
-        }
-        
-        public static Account CreateFor(Guid customerId)
-        {
-            return new Account(Guid.NewGuid(), customerId);
         }
     }
 }

@@ -9,6 +9,10 @@ ProjectSection(SolutionItems) = preProject
 	ReadMe.md = ReadMe.md
 EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mark.Gravestock.AccountManagement.Domain", "Mark.Gravestock.AccountManagement.Domain\Mark.Gravestock.AccountManagement.Domain.csproj", "{E8C434BB-E1AC-4C76-8239-6DDA42CD4B1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mark.Gravestock.AccountManagement.Infrastructure", "Mark.Gravestock.AccountManagement.Infrastructure\Mark.Gravestock.AccountManagement.Infrastructure.csproj", "{D9E2834B-16A2-4240-A193-544EFC846215}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,5 +27,13 @@ Global
 		{B6FAB702-5C08-404D-8E05-157CA14360FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6FAB702-5C08-404D-8E05-157CA14360FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6FAB702-5C08-404D-8E05-157CA14360FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8C434BB-E1AC-4C76-8239-6DDA42CD4B1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8C434BB-E1AC-4C76-8239-6DDA42CD4B1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8C434BB-E1AC-4C76-8239-6DDA42CD4B1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8C434BB-E1AC-4C76-8239-6DDA42CD4B1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9E2834B-16A2-4240-A193-544EFC846215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9E2834B-16A2-4240-A193-544EFC846215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9E2834B-16A2-4240-A193-544EFC846215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9E2834B-16A2-4240-A193-544EFC846215}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
