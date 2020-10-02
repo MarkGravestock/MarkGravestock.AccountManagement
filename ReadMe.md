@@ -14,6 +14,7 @@
 - Create ASP.NET Core solution with following attributes
     - API Documentation using [OpenApi]() implmented by [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
     - Structured Logging using [Serilog]
+        - Types of logging: Unstructured (strings), Structured (name-value pairs) and Domain (domain objects). Also consider the frequency of logging
     - Reporting Problem Details using [RFC7807] implemented by [Problem Details](https://github.com/khellang/Middleware)
     - Command/Query/Event dispatching implemented by [Mediatr]
     

@@ -1,16 +1,20 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using MarkGravestock.OrderManagement.Api.Accounts;
 using MarkGravestock.OrderManagement.Api.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
+using Serilog;
 
 namespace MarkGravestock.OrderManagement.Api
 {
     public class Startup
     {
         private IConfiguration configuration;
+        public ILifetimeScope AutofacContainer { get; private set; }
 
         public Startup(IConfiguration configuration)
         {
@@ -23,6 +27,14 @@ namespace MarkGravestock.OrderManagement.Api
             
             services.AddOpenApiDocumentation();
         }
+        
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            // Register your own things directly with Autofac here. Don't
+            // call builder.Populate(), that happens in AutofacServiceProviderFactory
+            // for you.
+            builder.RegisterType<InMemoryAccountRepository>().As<IAccountRepository>().SingleInstance();
+        }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -34,6 +46,10 @@ namespace MarkGravestock.OrderManagement.Api
             {
                 app.UseHsts();
             }
+
+            AutofacContainer = app.ApplicationServices.GetAutofacRoot();
+            
+            app.UseSerilogRequestLogging();
 
             app.UseHttpsRedirection();
 

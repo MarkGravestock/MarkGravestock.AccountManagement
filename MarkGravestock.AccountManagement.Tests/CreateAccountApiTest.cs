@@ -19,14 +19,27 @@ namespace MarkGravestock.OrderManagement.Tests
             
             var client = factory.CreateClient();
 
+            var aCustomerId = Guid.NewGuid();
+            
             var postRequest = new HttpRequestMessage(HttpMethod.Post, "/accounts")
             {
-                Content = JsonContent.Create(new {CustomerId = Guid.NewGuid()})
+                Content = JsonContent.Create(new {CustomerId = aCustomerId})
             };
             
             var responseMessage = await client.SendAsync(postRequest);
 
             responseMessage.StatusCode.Should().Be(HttpStatusCode.Created);
+            var createdLocation = responseMessage.Headers.Location;
+
+            var result = await client.GetFromJsonAsync<AccountDto>(createdLocation);
+
+            result.CustomerId.Should().Be(aCustomerId);
+        }
+
+        private class AccountDto
+        {
+            public Guid Id { get; set; }
+            public Guid CustomerId { get; set; }
         }
     }
 }
