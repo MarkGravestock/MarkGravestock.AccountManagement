@@ -20,7 +20,7 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         public async Task<IActionResult> CreateAccount([FromBody] CreateAccountRequest createAccountRequest)
         {
             //TODO: Move into application/mediatr
-            var newAccount = Account.CreateFor(createAccountRequest.CustomerId);
+            var newAccount = Account.CreateFor(new CustomerId(createAccountRequest.CustomerId));
 
             await accountRepository.SaveAsync(newAccount);
 
@@ -35,7 +35,7 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         {
             var account = await accountRepository.GetAsync(accountId);
 
-            var accountDto = account.Map(x => new {x.Id.Value, x.CustomerId});
+            var accountDto = account.Map(x => new {Id = x.Id.Value, CustomerId = x.CustomerId.Value});
             
             return accountDto.Map<IActionResult>(Ok).ValueOr(NotFound());
         }
