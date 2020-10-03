@@ -25,11 +25,11 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Accounts
             await connection.ExecuteAsync("INSERT INTO Account (Id, CustomerId) VALUES (@Id, @CustomerId)", new {Id = account.Id.Value,  CustomerId = account.CustomerId.Value});
         }
 
-        public async Task<Option<Account>> GetAsync(Guid accountId)
+        public async Task<Option<Account>> GetAsync(AccountId accountId)
         {
             using var connection = connectionFactory.GetConnection();
 
-            var dynamicAccounts = await connection.QueryAsync<dynamic>("SELECT * FROM Account WHERE Id = @Id ", new {Id = accountId});
+            var dynamicAccounts = await connection.QueryAsync<dynamic>("SELECT * FROM Account WHERE Id = @Id ", new {Id = accountId.Value});
                 
             var accounts = dynamicAccounts.Select(x => new Account(new AccountId(x.Id), new CustomerId(x.CustomerId)));
             

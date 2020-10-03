@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using DbUp;
@@ -8,6 +9,7 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Database.Migrations
 {
     public class Migrator
     {
+        [ExcludeFromCodeCoverage]
         public static int Main(string[] args)
         {
             var connectionString = args.FirstOrDefault() ?? "Server=(LocalDb)\\MSSQLLocalDB; Database=AccountManagement; Trusted_connection=true";

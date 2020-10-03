@@ -33,7 +33,7 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         [HttpGet("{accountId:guid}", Name = nameof(GetAccount))]
         public async Task<IActionResult> GetAccount(Guid accountId)
         {
-            var account = await accountRepository.GetAsync(accountId);
+            var account = await accountRepository.GetAsync(new AccountId(accountId));
 
             var accountDto = account.Map(x => new {Id = x.Id.Value, CustomerId = x.CustomerId.Value});
             

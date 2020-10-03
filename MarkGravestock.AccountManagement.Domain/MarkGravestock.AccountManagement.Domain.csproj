@@ -9,8 +9,4 @@
       <PackageReference Include="Optional" Version="4.0.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Core" />
-    </ItemGroup>
-
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using Mark.Gravestock.AccountManagement.Domain.Core;
 
 namespace Mark.Gravestock.AccountManagement.Domain.Accounts
 {

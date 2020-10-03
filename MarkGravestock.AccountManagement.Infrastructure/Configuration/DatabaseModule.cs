@@ -7,11 +7,16 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Configuration
 {
     public class DatabaseModule : Module
     {
+        private readonly string connectionString;
+
+        public DatabaseModule(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+
         protected override void Load(ContainerBuilder builder)
         {
-            //TODO: Move to caller. Use configuration type?
-            builder.RegisterInstance("Server=(LocalDb)\\MSSQLLocalDB; Database=AccountManagement; Trusted_connection=true").As<string>();
-            builder.RegisterType<SqlServerConnectionFactory>().As<ISqlConnectionFactory>().SingleInstance();
+            builder.RegisterInstance(new SqlServerConnectionFactory(connectionString)).As<ISqlConnectionFactory>().SingleInstance();
             builder.RegisterType<SqlServerAccountRepository>().As<IAccountRepository>().SingleInstance();
         }
     }
