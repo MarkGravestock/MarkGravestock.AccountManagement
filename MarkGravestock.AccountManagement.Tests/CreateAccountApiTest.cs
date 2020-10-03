@@ -27,7 +27,7 @@ namespace MarkGravestock.OrderManagement.Tests
         {
             using var factory = new WebApplicationFactory<Startup>();
 
-            var client = factory.CreateClient();
+            using var client = factory.CreateClient();
 
             var aCustomerId = Guid.NewGuid();
 
@@ -43,7 +43,7 @@ namespace MarkGravestock.OrderManagement.Tests
 
             using var newFactory = new WebApplicationFactory<Startup>();
 
-            var newClient = newFactory.CreateClient();
+            using var newClient = newFactory.CreateClient();
 
             var result = await newClient.GetFromJsonAsync<AccountDto>(createdLocation);
 
@@ -55,7 +55,7 @@ namespace MarkGravestock.OrderManagement.Tests
         {
             using var factory = new WebApplicationFactory<Startup>();
 
-            var client = factory.CreateClient();
+            using var client = factory.CreateClient();
 
             var responseMessage = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, $"/accounts/{Guid.NewGuid()}"));
 

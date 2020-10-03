@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Optional;
 
 namespace Mark.Gravestock.AccountManagement.Domain.Accounts
 {
     public interface IAccountRepository
     {
-        //TODO Async
-        void Save(Account account);
-        Option<Account> Get(Guid accountId);
+        Task SaveAsync(Account account);
+        Task<Option<Account>> GetAsync(Guid accountId);
     }
 }

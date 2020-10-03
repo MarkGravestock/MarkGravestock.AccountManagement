@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Mark.Gravestock.AccountManagement.Domain.Accounts;
 using Optional;
 
@@ -9,14 +10,16 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Accounts
     {
         private readonly IDictionary<Guid, Account> accountsByKey = new Dictionary<Guid, Account>();
 
-        public void Save(Account account)
+        public Task SaveAsync(Account account)
         {
             accountsByKey[account.Id] = account;
+            
+            return Task.CompletedTask;
         }
 
-        public Option<Account> Get(Guid accountId)
+        public Task<Option<Account>> GetAsync(Guid accountId)
         {
-            return accountsByKey.ContainsKey(accountId) ? Option.Some(accountsByKey[accountId]) : Option.None<Account>();
+            return Task.FromResult(accountsByKey.ContainsKey(accountId) ? Option.Some(accountsByKey[accountId]) : Option.None<Account>());
         }
     }
 }

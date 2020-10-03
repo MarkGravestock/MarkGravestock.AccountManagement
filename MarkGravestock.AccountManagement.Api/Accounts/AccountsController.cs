@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Mark.Gravestock.AccountManagement.Domain.Accounts;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,12 +17,12 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         }
 
         [HttpPost]
-        public IActionResult CreateAccount([FromBody] CreateAccountRequest createAccountRequest)
+        public async Task<IActionResult> CreateAccount([FromBody] CreateAccountRequest createAccountRequest)
         {
             //TODO: Move into application/mediatr
             var newAccount = Account.CreateFor(createAccountRequest.CustomerId);
 
-            accountRepository.Save(newAccount);
+            await accountRepository.SaveAsync(newAccount);
 
             var createdPath = Url.RouteUrl(nameof(GetAccount), new {accountId = newAccount.Id});
             var createdUri = new Uri($"{Request.Scheme}://{Request.Host}{createdPath}", UriKind.Absolute);
@@ -30,9 +31,11 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         }
 
         [HttpGet("{accountId:guid}", Name = nameof(GetAccount))]
-        public IActionResult GetAccount(Guid accountId)
+        public async Task<IActionResult> GetAccount(Guid accountId)
         {
-            return accountRepository.Get(accountId).Map<IActionResult>(Ok).ValueOr(NotFound());
+            var account = await accountRepository.GetAsync(accountId);
+            
+            return account.Map<IActionResult>(Ok).ValueOr(NotFound());
         }
     }
 }

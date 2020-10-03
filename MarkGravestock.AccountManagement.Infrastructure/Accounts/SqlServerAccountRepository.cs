@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Dapper;
 using Mark.Gravestock.AccountManagement.Domain.Accounts;
 using MarkGravestock.AccountManagement.Infrastructure.Database;
@@ -16,18 +17,20 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Accounts
             this.connectionFactory = connectionFactory;
         }
 
-        public void Save(Account account)
+        public async Task SaveAsync(Account account)
         {
             using var connection = connectionFactory.GetConnection();
 
-            connection.Execute("INSERT INTO Account (Id, CustomerId) VALUES (@Id, @CustomerId)", new {account.Id, account.CustomerId});
+            await connection.ExecuteAsync("INSERT INTO Account (Id, CustomerId) VALUES (@Id, @CustomerId)", new {account.Id, account.CustomerId});
         }
 
-        public Option<Account> Get(Guid accountId)
+        public async Task<Option<Account>> GetAsync(Guid accountId)
         {
             using var connection = connectionFactory.GetConnection();
 
-            return connection.Query<Account>("SELECT * FROM Account WHERE Id = @Id ", new {Id = accountId}).SingleOrNone();
+            var accounts = await connection.QueryAsync<Account>("SELECT * FROM Account WHERE Id = @Id ", new {Id = accountId});
+            
+            return accounts.SingleOrNone();
         }
     }
 }
