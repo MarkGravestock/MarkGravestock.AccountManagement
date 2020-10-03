@@ -35,15 +35,9 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         {
             var account = await accountRepository.GetAsync(accountId);
 
-            var accountDto = account.Map(x => new AccountDto() { Id = x.Id, CustomerId = x.CustomerId});
+            var accountDto = account.Map(x => new {x.Id.Value, x.CustomerId});
             
             return accountDto.Map<IActionResult>(Ok).ValueOr(NotFound());
-        }
-        
-        private class AccountDto
-        {
-            public Guid Id { get; set; }
-            public Guid CustomerId { get; set; }
         }
     }
 }

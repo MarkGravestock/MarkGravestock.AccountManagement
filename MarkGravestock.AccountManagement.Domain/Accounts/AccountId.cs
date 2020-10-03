@@ -29,6 +29,7 @@ namespace Mark.Gravestock.AccountManagement.Domain.Accounts
             return accountId.GetHashCode();
         }
 
+        public Guid Value => accountId;
         public static implicit operator Guid(AccountId accountId) => accountId.accountId;
     }
 }
