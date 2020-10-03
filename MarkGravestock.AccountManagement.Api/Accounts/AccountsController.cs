@@ -24,7 +24,7 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
 
             await accountRepository.SaveAsync(newAccount);
 
-            var createdPath = Url.RouteUrl(nameof(GetAccount), new {accountId = newAccount.Id});
+            var createdPath = Url.RouteUrl(nameof(GetAccount), new {accountId = (Guid)newAccount.Id});
             var createdUri = new Uri($"{Request.Scheme}://{Request.Host}{createdPath}", UriKind.Absolute);
 
             return Created(createdUri, null);
@@ -34,8 +34,16 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         public async Task<IActionResult> GetAccount(Guid accountId)
         {
             var account = await accountRepository.GetAsync(accountId);
+
+            var accountDto = account.Map(x => new AccountDto() { Id = x.Id, CustomerId = x.CustomerId});
             
-            return account.Map<IActionResult>(Ok).ValueOr(NotFound());
+            return accountDto.Map<IActionResult>(Ok).ValueOr(NotFound());
+        }
+        
+        private class AccountDto
+        {
+            public Guid Id { get; set; }
+            public Guid CustomerId { get; set; }
         }
     }
 }

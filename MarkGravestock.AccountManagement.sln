@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkGravestock.AccountManagement.Api", "MarkGravestock.AccountManagement.Api\MarkGravestock.AccountManagement.Api.csproj", "{77C0DD03-8CB2-48AF-AEDB-3AEECF5E4CDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkGravestock.AccountManagement.Tests", "MarkGravestock.AccountManagement.Tests\MarkGravestock.AccountManagement.Tests.csproj", "{B6FAB702-5C08-404D-8E05-157CA14360FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkGravestock.AccountManagement.IntegrationTests", "MarkGravestock.AccountManagement.IntegrationTests\MarkGravestock.AccountManagement.IntegrationTests.csproj", "{B6FAB702-5C08-404D-8E05-157CA14360FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{4821E41E-AAEE-4EB0-B2A6-6C91B5E8C708}"
 ProjectSection(SolutionItems) = preProject
@@ -12,6 +12,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkGravestock.AccountManagement.Domain", "MarkGravestock.AccountManagement.Domain\MarkGravestock.AccountManagement.Domain.csproj", "{E8C434BB-E1AC-4C76-8239-6DDA42CD4B1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkGravestock.AccountManagement.Infrastructure", "MarkGravestock.AccountManagement.Infrastructure\MarkGravestock.AccountManagement.Infrastructure.csproj", "{D9E2834B-16A2-4240-A193-544EFC846215}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkGravestock.AccountManagement.UnitTests", "MarkGravestock.AccountManagement.UnitTests\MarkGravestock.AccountManagement.UnitTests.csproj", "{8AD3FEE8-75F9-4972-8924-C291BE04DE37}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7AFD1D32-75BD-48BC-833B-9ABA8C11098D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,5 +39,13 @@ Global
 		{D9E2834B-16A2-4240-A193-544EFC846215}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9E2834B-16A2-4240-A193-544EFC846215}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9E2834B-16A2-4240-A193-544EFC846215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AD3FEE8-75F9-4972-8924-C291BE04DE37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AD3FEE8-75F9-4972-8924-C291BE04DE37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AD3FEE8-75F9-4972-8924-C291BE04DE37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD3FEE8-75F9-4972-8924-C291BE04DE37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8AD3FEE8-75F9-4972-8924-C291BE04DE37} = {7AFD1D32-75BD-48BC-833B-9ABA8C11098D}
+		{B6FAB702-5C08-404D-8E05-157CA14360FF} = {7AFD1D32-75BD-48BC-833B-9ABA8C11098D}
 	EndGlobalSection
 EndGlobal

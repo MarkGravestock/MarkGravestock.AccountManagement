@@ -20,4 +20,8 @@
         - Types of logging: Unstructured (strings), Structured (name-value pairs) and Domain (domain objects). Also consider the frequency of logging
     - Reporting Problem Details using [RFC7807] implemented by [Problem Details](https://github.com/khellang/Middleware)
     - Command/Query/Event dispatching implemented by [Mediatr]
+
+### TODO
+
+[ASP.NET Core Synchronisation Context or lack of](https://blog.stephencleary.com/2017/03/aspnetcore-synchronization-context.html)
     

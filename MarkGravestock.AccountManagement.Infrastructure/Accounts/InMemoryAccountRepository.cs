@@ -8,7 +8,7 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Accounts
 {
     internal class InMemoryAccountRepository : IAccountRepository
     {
-        private readonly IDictionary<Guid, Account> accountsByKey = new Dictionary<Guid, Account>();
+        private readonly IDictionary<AccountId, Account> accountsByKey = new Dictionary<AccountId, Account>();
 
         public Task SaveAsync(Account account)
         {
@@ -17,8 +17,9 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Accounts
             return Task.CompletedTask;
         }
 
-        public Task<Option<Account>> GetAsync(Guid accountId)
+        public Task<Option<Account>> GetAsync(Guid id)
         {
+            var accountId = new AccountId(id);
             return Task.FromResult(accountsByKey.ContainsKey(accountId) ? Option.Some(accountsByKey[accountId]) : Option.None<Account>());
         }
     }
