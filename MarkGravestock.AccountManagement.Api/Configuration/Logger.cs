@@ -3,7 +3,7 @@ using Serilog.Events;
 
 namespace MarkGravestock.AccountManagement.Api.Configuration
 {
-    public static class Logger
+    internal static class Logger
     {
         public static LoggerConfiguration CreateLoggerConfiguration()
         {

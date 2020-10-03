@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace MarkGravestock.AccountManagement.Infrastructure.Database
 {
-    public class SqlServerConnectionFactory : ISqlConnectionFactory
+    internal class SqlServerConnectionFactory : ISqlConnectionFactory
     {
         private readonly string connectionString;
 

@@ -4,7 +4,7 @@ using Microsoft.OpenApi.Models;
 
 namespace MarkGravestock.AccountManagement.Api.Configuration
 {
-    public static class OpenApiExtension
+    internal static class OpenApiExtension
     {
         private const string Name = "v1";
         private const string Title = "Accounts API";

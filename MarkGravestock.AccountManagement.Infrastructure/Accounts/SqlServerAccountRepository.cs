@@ -7,7 +7,7 @@ using Optional.Collections;
 
 namespace MarkGravestock.AccountManagement.Infrastructure.Accounts
 {
-    public class SqlServerAccountRepository : IAccountRepository
+    internal class SqlServerAccountRepository : IAccountRepository
     {
         private readonly ISqlConnectionFactory connectionFactory;
 

@@ -2,7 +2,7 @@
 
 namespace MarkGravestock.AccountManagement.Infrastructure.Database
 {
-    public interface ISqlConnectionFactory
+    internal interface ISqlConnectionFactory
     {
         IDbConnection GetConnection();
     }
