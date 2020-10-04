@@ -4,32 +4,33 @@ namespace Mark.Gravestock.AccountManagement.Domain.Core
 {
     public class Identity<T>
     {
-        private readonly Guid identity;
-        
         protected Identity(Guid identity)
         {
-            this.identity = identity;
+            Value = identity;
         }
-        
-        protected bool Equals(Identity<T> other)
+
+        public Guid Value { get; }
+
+        private bool Equals(Identity<T> other)
         {
-            return identity.Equals(other.identity);
+            return Value.Equals(other.Value);
         }
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals((Identity<T>) obj);
+            return obj.GetType() == GetType() && Equals((Identity<T>) obj);
         }
 
         public override int GetHashCode()
         {
-            return identity.GetHashCode();
+            return Value.GetHashCode();
         }
 
-        public Guid Value => identity;
-        public static implicit operator Guid(Identity<T> identity) => identity.identity;
+        public static implicit operator Guid(Identity<T> identity)
+        {
+            return identity.Value;
+        }
     }
 }

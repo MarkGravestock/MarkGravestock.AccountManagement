@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Mark.Gravestock.AccountManagement.Domain.Accounts
+﻿namespace Mark.Gravestock.AccountManagement.Domain.Accounts
 {
     public class Account
     {

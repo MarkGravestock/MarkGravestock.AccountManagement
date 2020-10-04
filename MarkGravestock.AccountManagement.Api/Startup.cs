@@ -13,14 +13,14 @@ namespace MarkGravestock.AccountManagement.Api
 {
     public class Startup
     {
-        private IConfiguration configuration;
+        private readonly IConfiguration configuration;
 
         public Startup(IConfiguration configuration)
         {
             this.configuration = configuration;
         }
 
-        public ILifetimeScope AutofacContainer { get; private set; }
+        private ILifetimeScope AutofacContainer { get; set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -31,7 +31,7 @@ namespace MarkGravestock.AccountManagement.Api
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            builder.RegisterModule(new DatabaseModule(configuration.GetConnectionString("AccountManagement")));
+            builder.RegisterModule(new DatabaseModule(configuration.GetConnectionString(ConnectionString.AccountManagement)));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Mark.Gravestock.AccountManagement.Domain.Accounts;
@@ -15,7 +14,7 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Accounts
         public Task SaveAsync(Account account)
         {
             accountsByKey[account.Id] = account;
-            
+
             return Task.CompletedTask;
         }
 

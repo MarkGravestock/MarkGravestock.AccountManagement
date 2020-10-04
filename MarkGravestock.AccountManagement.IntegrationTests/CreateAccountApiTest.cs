@@ -15,7 +15,7 @@ namespace MarkGravestock.OrderManagement.Tests
     {
         public CreateAccountApiTest()
         {
-            var connectionString = "Server=(LocalDb)\\MSSQLLocalDB; Database=AccountManagement; Trusted_connection=true";
+            const string connectionString = "Server=(LocalDb)\\MSSQLLocalDB; Database=AccountManagement; Trusted_connection=true";
 
             var migrationResult = Migrator.ApplyMigrations(connectionString);
 
