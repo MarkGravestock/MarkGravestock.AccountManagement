@@ -5,11 +5,11 @@
 
         <IsPackable>false</IsPackable>
 
-        <LangVersion>9</LangVersion>
+        <LangVersion>8</LangVersion>
 
         <Nullable>annotations</Nullable>
 
-        <RootNamespace>MarkGravestock.OrderManagement.Tests</RootNamespace>
+        <RootNamespace>MarkGravestock.AccountManagement.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

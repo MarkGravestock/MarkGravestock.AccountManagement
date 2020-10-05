@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Hellang.Middleware.ProblemDetails;
 using MarkGravestock.AccountManagement.Api.Configuration;
 using MarkGravestock.AccountManagement.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Builder;
@@ -24,6 +25,8 @@ namespace MarkGravestock.AccountManagement.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddConfiguredProblemDetails();
+            
             services.AddControllers();
 
             services.AddOpenApiDocumentation();
@@ -36,6 +39,8 @@ namespace MarkGravestock.AccountManagement.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseProblemDetails();
+
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
             else

@@ -20,9 +20,9 @@ namespace Mark.Gravestock.AccountManagement.Domain.Accounts
 
         public AccountId Id { get; }
 
-        public static Account Open(CustomerId customerId)
+        public static Account Open(CustomerId customerId, Decimal initialBalanceInGbp = Decimal.Zero)
         {
-            return new Account(AccountId.Create(), customerId, Decimal.Zero);
+            return new Account(AccountId.Create(), customerId, initialBalanceInGbp);
         }
     }
 }

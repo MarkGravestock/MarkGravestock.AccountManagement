@@ -9,7 +9,7 @@ using MarkGravestock.AccountManagement.Infrastructure.Database.Migrations;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
-namespace MarkGravestock.OrderManagement.Tests
+namespace MarkGravestock.AccountManagement.Tests
 {
     public class CreateAccountApiTest
     {
@@ -60,6 +60,25 @@ namespace MarkGravestock.OrderManagement.Tests
             var responseMessage = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, $"/accounts/{Guid.NewGuid()}"));
 
             responseMessage.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        }
+        
+        [Fact]
+        public async Task it_returns_bad_request_for_invalid_initial_balance()
+        {
+            using var factory = new WebApplicationFactory<Startup>();
+
+            using var client = factory.CreateClient();
+
+            var aCustomerId = Guid.NewGuid();
+
+            var postRequest = new HttpRequestMessage(HttpMethod.Post, "/accounts")
+            {
+                Content = JsonContent.Create(new {CustomerId = aCustomerId, InitialBalance = -100m})
+            };
+
+            var responseMessage = await client.SendAsync(postRequest);
+            
+            responseMessage.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
         private class AccountDto

@@ -2,7 +2,7 @@
 
 namespace MarkGravestock.AccountManagement.Api.Accounts
 {
-    public struct CreateAccountRequest
+    public struct OpenAccountRequest
     {
         public Guid CustomerId { get; set; }
         public decimal InitialBalance { get; set; }
