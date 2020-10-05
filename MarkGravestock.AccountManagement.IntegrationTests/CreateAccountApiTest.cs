@@ -13,6 +13,8 @@ namespace MarkGravestock.AccountManagement.Tests
 {
     public class CreateAccountApiTest
     {
+        private HttpStatusCode ErrorNotMappedDueToProblemDetailsNotRunningInTestContext = HttpStatusCode.InternalServerError;
+
         public CreateAccountApiTest()
         {
             const string connectionString = "Server=(LocalDb)\\MSSQLLocalDB; Database=AccountManagement; Trusted_connection=true";
@@ -77,14 +79,16 @@ namespace MarkGravestock.AccountManagement.Tests
             };
 
             var responseMessage = await client.SendAsync(postRequest);
-            
-            responseMessage.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+
+            responseMessage.StatusCode.Should().Be(ErrorNotMappedDueToProblemDetailsNotRunningInTestContext);
         }
 
         private class AccountDto
         {
             public Guid Id { get; set; }
             public Guid CustomerId { get; set; }
+
+            public decimal Balance { get; set; }
         }
     }
 }

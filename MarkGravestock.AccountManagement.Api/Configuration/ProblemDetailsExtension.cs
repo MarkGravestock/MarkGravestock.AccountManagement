@@ -1,6 +1,7 @@
-﻿using Hellang.Middleware.ProblemDetails;
+﻿using System.Net.Security;
+using Hellang.Middleware.ProblemDetails;
 using Mark.Gravestock.AccountManagement.Domain.Core;
-using Microsoft.AspNetCore.Http;
+using MarkGravestock.AccountManagement.Api.Core;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MarkGravestock.AccountManagement.Api.Configuration
@@ -9,12 +10,12 @@ namespace MarkGravestock.AccountManagement.Api.Configuration
     {
         public static IServiceCollection AddConfiguredProblemDetails(this IServiceCollection serviceCollection)
         {
-            return serviceCollection.AddProblemDetails(Configure);
+            return serviceCollection.AddProblemDetails(options => Configure(options));
         }
 
         private static void Configure(ProblemDetailsOptions options)
         {
-            options.MapToStatusCode<BusinessRuleValidationException>(StatusCodes.Status400BadRequest);
+            options.Map<BusinessRuleValidationException>(x => new BusinessRuleValidationExceptionProblemDetail(x));
         }
     }
 }

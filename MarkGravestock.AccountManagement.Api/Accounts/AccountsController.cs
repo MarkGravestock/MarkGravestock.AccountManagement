@@ -20,21 +20,13 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         [HttpPost]
         public async Task<IActionResult> CreateAccount([FromBody] OpenAccountRequest openAccountRequest)
         {
-            //TODO: Move into application/mediatr
-            try
-            {
-                var newAccount = Account.Open(new CustomerId(openAccountRequest.CustomerId), openAccountRequest.InitialBalance);
-                await accountRepository.SaveAsync(newAccount);
+            var newAccount = Account.Open(new CustomerId(openAccountRequest.CustomerId), openAccountRequest.InitialBalance);
+            await accountRepository.SaveAsync(newAccount);
 
-                var createdPath = Url.RouteUrl(nameof(GetAccount), new {accountId = (Guid) newAccount.Id});
-                var createdUri = new Uri($"{Request.Scheme}://{Request.Host}{createdPath}", UriKind.Absolute);
+            var createdPath = Url.RouteUrl(nameof(GetAccount), new {accountId = (Guid) newAccount.Id});
+            var createdUri = new Uri($"{Request.Scheme}://{Request.Host}{createdPath}", UriKind.Absolute);
 
-                return Created(createdUri, null);
-            }
-            catch (BusinessRuleValidationException)
-            {
-                return BadRequest();
-            }
+            return Created(createdUri, null);
         }
 
         [HttpGet("{accountId:guid}", Name = nameof(GetAccount))]

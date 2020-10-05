@@ -39,12 +39,15 @@ namespace MarkGravestock.AccountManagement.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseProblemDetails();
-
             if (env.IsDevelopment())
+            {
                 app.UseDeveloperExceptionPage();
+            }
             else
+            {
+                app.UseProblemDetails();
                 app.UseHsts();
+            }
 
             AutofacContainer = app.ApplicationServices.GetAutofacRoot();
 
