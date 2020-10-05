@@ -20,7 +20,7 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         public async Task<IActionResult> CreateAccount([FromBody] CreateAccountRequest createAccountRequest)
         {
             //TODO: Move into application/mediatr
-            var newAccount = Account.CreateFor(new CustomerId(createAccountRequest.CustomerId));
+            var newAccount = Account.Open(new CustomerId(createAccountRequest.CustomerId));
 
             await accountRepository.SaveAsync(newAccount);
 

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using Mark.Gravestock.AccountManagement.Domain.Accounts;
@@ -30,7 +31,7 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Accounts
 
             var dynamicAccounts = await connection.QueryAsync<dynamic>("SELECT * FROM Account WHERE Id = @Id ", new {Id = accountId.Value});
 
-            var accounts = dynamicAccounts.Select(x => new Account(new AccountId(x.Id), new CustomerId(x.CustomerId)));
+            var accounts = dynamicAccounts.Select(x => new Account(new AccountId(x.Id), new CustomerId(x.CustomerId), Decimal.Zero));
 
             return accounts.SingleOrNone();
         }
