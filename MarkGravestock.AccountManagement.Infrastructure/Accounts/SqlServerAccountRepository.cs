@@ -22,7 +22,7 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Accounts
         {
             using var connection = connectionFactory.GetConnection();
 
-            await connection.ExecuteAsync("INSERT INTO Account (Id, CustomerId) VALUES (@Id, @CustomerId)", new {Id = account.Id.Value, CustomerId = account.CustomerId.Value});
+            await connection.ExecuteAsync("INSERT INTO Account (Id, CustomerId, Balance) VALUES (@Id, @CustomerId, @Balance)", new {Id = account.Id.Value, CustomerId = account.CustomerId.Value, account.Balance});
         }
 
         public async Task<Option<Account>> GetAsync(AccountId accountId)
@@ -31,7 +31,7 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Accounts
 
             var dynamicAccounts = await connection.QueryAsync<dynamic>("SELECT * FROM Account WHERE Id = @Id ", new {Id = accountId.Value});
 
-            var accounts = dynamicAccounts.Select(x => new Account(new AccountId(x.Id), new CustomerId(x.CustomerId), Decimal.Zero));
+            var accounts = dynamicAccounts.Select(x => new Account(new AccountId(x.Id), new CustomerId(x.CustomerId), x.Balance));
 
             return accounts.SingleOrNone();
         }

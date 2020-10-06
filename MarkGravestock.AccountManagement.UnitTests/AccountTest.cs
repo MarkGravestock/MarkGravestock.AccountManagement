@@ -26,13 +26,21 @@ namespace MarkGravestock.AccountManagement.UnitTests
             ((Guid) sut.Id).Should().Be(accountId);
             sut.Id.Value.Should().Be(accountId);
         }
-        
+
+        [Fact] public void it_can_return_the_balance()
+        {
+            var accountId = Guid.NewGuid();
+            var sut = new Account(new AccountId(accountId), CustomerId.Create(), 124m);
+
+            sut.Balance.Should().Be(124m);
+        }
+
         [Fact]
         public void it_raises_a_validation_error_when_the_initial_balance_is_negative()
         {
-            Action openAccount = () => new Account(AccountId.Create(), CustomerId.Create(), -100m);
+            Action openAccount = () => Account.Open(CustomerId.Create(), -100m);
 
-            openAccount.Should().Throw<BusinessRuleValidationException>().WithMessage("Initial Balance can't be negative");
+            openAccount.Should().Throw<BusinessRuleValidationException>().WithMessage("Account Balance can't be negative");
         }
     }
 }

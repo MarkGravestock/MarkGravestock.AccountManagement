@@ -30,6 +30,11 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Database.Migrations
             return 0;
         }
 
+        public static void DropDatabase(string connectionString)
+        {
+            DbUp.DropDatabase.For.SqlDatabase(connectionString);
+        }
+        
         public static DatabaseUpgradeResult ApplyMigrations(string connectionString)
         {
             EnsureDatabase.For.SqlDatabase(connectionString);

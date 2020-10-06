@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Mark.Gravestock.AccountManagement.Domain.Accounts;
-using Mark.Gravestock.AccountManagement.Domain.Core;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarkGravestock.AccountManagement.Api.Accounts
@@ -21,12 +20,16 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         public async Task<IActionResult> CreateAccount([FromBody] OpenAccountRequest openAccountRequest)
         {
             var newAccount = Account.Open(new CustomerId(openAccountRequest.CustomerId), openAccountRequest.InitialBalance);
+
             await accountRepository.SaveAsync(newAccount);
 
-            var createdPath = Url.RouteUrl(nameof(GetAccount), new {accountId = (Guid) newAccount.Id});
-            var createdUri = new Uri($"{Request.Scheme}://{Request.Host}{createdPath}", UriKind.Absolute);
+            return Created(CreatedUri(newAccount), null);
+        }
 
-            return Created(createdUri, null);
+        private Uri CreatedUri(Account newAccount)
+        {
+            var createdPath = Url.RouteUrl(nameof(GetAccount), new {accountId = (Guid) newAccount.Id});
+            return new Uri($"{Request.Scheme}://{Request.Host}{createdPath}", UriKind.Absolute);
         }
 
         [HttpGet("{accountId:guid}", Name = nameof(GetAccount))]
@@ -34,7 +37,7 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
         {
             var account = await accountRepository.GetAsync(new AccountId(accountId));
 
-            var accountDto = account.Map(x => new {Id = x.Id.Value, CustomerId = x.CustomerId.Value});
+            var accountDto = account.Map(x => new {Id = x.Id.Value, CustomerId = x.CustomerId.Value, x.Balance});
 
             return accountDto.Map<IActionResult>(Ok).ValueOr(NotFound());
         }
