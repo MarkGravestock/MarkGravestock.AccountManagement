@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkGravestock.AccountManag
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7AFD1D32-75BD-48BC-833B-9ABA8C11098D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mark.Gravestock.AccountManagement.Application", "Mark.Gravestock.AccountManagement.Application\Mark.Gravestock.AccountManagement.Application.csproj", "{52D21509-AFA2-4C19-A20B-194403D78C50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{8AD3FEE8-75F9-4972-8924-C291BE04DE37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AD3FEE8-75F9-4972-8924-C291BE04DE37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AD3FEE8-75F9-4972-8924-C291BE04DE37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52D21509-AFA2-4C19-A20B-194403D78C50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52D21509-AFA2-4C19-A20B-194403D78C50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52D21509-AFA2-4C19-A20B-194403D78C50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52D21509-AFA2-4C19-A20B-194403D78C50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8AD3FEE8-75F9-4972-8924-C291BE04DE37} = {7AFD1D32-75BD-48BC-833B-9ABA8C11098D}

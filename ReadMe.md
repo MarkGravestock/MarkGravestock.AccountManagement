@@ -23,8 +23,7 @@
 
 ### TODO
 
-* Add test to test balance reflects initial balance on newly opened account
-* Add test to test at controller level as the test diagnostics are not so good at the API level.
+* Add test to test at application level as the test diagnostics are not so good at the API level.
 
 [ASP.NET Core Synchronisation Context or lack of](https://blog.stephencleary.com/2017/03/aspnetcore-synchronization-context.html)
     

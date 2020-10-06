@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Hellang.Middleware.ProblemDetails;
+using Mark.Gravestock.AccountManagement.Application.Configuration;
 using MarkGravestock.AccountManagement.Api.Configuration;
 using MarkGravestock.AccountManagement.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Builder;
@@ -34,6 +35,7 @@ namespace MarkGravestock.AccountManagement.Api
 
         public void ConfigureContainer(ContainerBuilder builder)
         {
+            builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule(new DatabaseModule(configuration.GetConnectionString(ConnectionString.AccountManagement)));
         }
 

@@ -9,12 +9,14 @@
     <ItemGroup>
       <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.0.1" />
       <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="5.1.1" />
+      <PackageReference Include="MediatR" Version="8.1.0" />
       <PackageReference Include="Optional" Version="4.0.0" />
       <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.1" />
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Mark.Gravestock.AccountManagement.Application\Mark.Gravestock.AccountManagement.Application.csproj" />
       <ProjectReference Include="..\MarkGravestock.AccountManagement.Domain\MarkGravestock.AccountManagement.Domain.csproj" />
       <ProjectReference Include="..\MarkGravestock.AccountManagement.Infrastructure\MarkGravestock.AccountManagement.Infrastructure.csproj" />
     </ItemGroup>
