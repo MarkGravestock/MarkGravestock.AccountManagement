@@ -36,7 +36,7 @@ namespace MarkGravestock.AccountManagement.Api
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule<ApplicationModule>();
-            builder.RegisterModule(new DatabaseModule(configuration.GetConnectionString(ConnectionString.AccountManagement)));
+            builder.RegisterModule(new InfrastructureModule(configuration.GetConnectionString(ConnectionString.AccountManagement)));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
