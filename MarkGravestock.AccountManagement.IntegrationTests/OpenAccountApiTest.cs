@@ -5,12 +5,13 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using FluentAssertions;
 using MarkGravestock.AccountManagement.Api;
-using MarkGravestock.AccountManagement.Infrastructure.Database.Migrations;
+using MarkGravestock.AccountManagement.IntegrationTests.Core;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
 namespace MarkGravestock.AccountManagement.IntegrationTests
 {
+    [Collection(Collections.Database)]
     public class OpenAccountApiTest : IDisposable
     {
         private HttpStatusCode ErrorNotMappedDueToProblemDetailsNotRunningInTestContext = HttpStatusCode.InternalServerError;
@@ -20,20 +21,9 @@ namespace MarkGravestock.AccountManagement.IntegrationTests
 
         public OpenAccountApiTest()
         {
-            SetupDatabase(Configuration.DevelopmentConnectionString());
-
             factory = new WebApplicationFactory<Startup>();
             
             client = factory.CreateClient();
-        }
-
-        private static void SetupDatabase(string connectionString)
-        {
-            Migrator.DropDatabase(Configuration.DevelopmentConnectionString());
-
-            var migrationResult = Migrator.ApplyMigrations(connectionString);
-
-            migrationResult.Error.Should().BeNull();
         }
 
         [Fact]

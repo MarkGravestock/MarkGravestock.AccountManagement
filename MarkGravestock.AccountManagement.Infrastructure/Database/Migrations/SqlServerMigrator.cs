@@ -7,7 +7,7 @@ using DbUp.Engine;
 
 namespace MarkGravestock.AccountManagement.Infrastructure.Database.Migrations
 {
-    public class Migrator
+    public class SqlServerMigrator
     {
         [ExcludeFromCodeCoverage]
         public static int Main(string[] args)
