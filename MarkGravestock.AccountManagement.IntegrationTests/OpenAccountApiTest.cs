@@ -22,19 +22,15 @@ namespace MarkGravestock.AccountManagement.IntegrationTests
         public OpenAccountApiTest()
         {
             factory = new WebApplicationFactory<Startup>();
-            
             client = factory.CreateClient();
         }
 
-        [Fact]
-        public async Task it_can_create_an_account_using_the_api()
+        [Theory, TestConventions]
+        public async Task it_can_create_an_account_using_the_api(Guid customerId, decimal initialBalance)
         {
-            var aCustomerId = Guid.NewGuid();
-            var anInitialBalance = 2000m;
-
             var postRequest = new HttpRequestMessage(HttpMethod.Post, "/accounts")
             {
-                Content = JsonContent.Create(new {CustomerId = aCustomerId, InitialBalance = anInitialBalance})
+                Content = JsonContent.Create(new {CustomerId = customerId, InitialBalance = initialBalance})
             };
 
             var responseMessage = await client.SendAsync(postRequest);
@@ -48,8 +44,8 @@ namespace MarkGravestock.AccountManagement.IntegrationTests
 
             var result = await newClient.GetFromJsonAsync<AccountDto>(createdLocation);
 
-            result.CustomerId.Should().Be(aCustomerId);
-            result.Balance.Should().Be(anInitialBalance);
+            result.CustomerId.Should().Be(customerId);
+            result.Balance.Should().Be(initialBalance);
         }
 
         [Fact]
@@ -60,14 +56,12 @@ namespace MarkGravestock.AccountManagement.IntegrationTests
             responseMessage.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
         
-        [Fact]
-        public async Task it_returns_bad_request_for_invalid_initial_balance()
+        [Theory, TestConventions]
+        public async Task it_returns_bad_request_for_invalid_initial_balance(Guid customerId)
         {
-            var aCustomerId = Guid.NewGuid();
-
             var postRequest = new HttpRequestMessage(HttpMethod.Post, "/accounts")
             {
-                Content = JsonContent.Create(new {CustomerId = aCustomerId, InitialBalance = -100m})
+                Content = JsonContent.Create(new {CustomerId = customerId, InitialBalance = -100m})
             };
 
             var responseMessage = await client.SendAsync(postRequest);
@@ -75,18 +69,17 @@ namespace MarkGravestock.AccountManagement.IntegrationTests
             responseMessage.StatusCode.Should().Be(ErrorNotMappedDueToProblemDetailsNotRunningInTestContext);
         }
 
-        private class AccountDto
-        {
-            public Guid Id { get; set; }
-            public Guid CustomerId { get; set; }
-
-            public decimal Balance { get; set; }
-        }
-
         public void Dispose()
         {
             client.Dispose();
             factory.Dispose();
+        }
+
+        private class AccountDto
+        {
+            public Guid Id { get; set; }
+            public Guid CustomerId { get; set; }
+            public decimal Balance { get; set; }
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using FluentAssertions;
 using Mark.Gravestock.AccountManagement.Application.Accounts;
-using Mark.Gravestock.AccountManagement.Domain.Accounts;
 using MarkGravestock.AccountManagement.IntegrationTests.Core;
 using MediatR;
 using Optional.Unsafe;
@@ -14,17 +12,14 @@ namespace MarkGravestock.AccountManagement.IntegrationTests
     public class OpenAccountApplicationTest
     {
         [Theory, TestConventions]
-        public async Task it_can_create_an_account(IMediator mediator)
+        public async Task it_can_create_an_account(IMediator mediator, OpenAccountCommand command)
         {
-            var aCustomerId = Guid.NewGuid();
-            var anInitialBalance = 2000m;
-
-            var accountId = await mediator.Send(new OpenAccountCommand { CustomerId = aCustomerId, InitialBalance = anInitialBalance});
+            var accountId = await mediator.Send(command);
 
             var result = await mediator.Send(new GetAccountQuery{ AccountId = accountId });
             
-            result.ValueOrFailure().CustomerId.Should().Be(new CustomerId(aCustomerId));
-            result.ValueOrFailure().Balance.Should().Be(anInitialBalance);
+            result.ValueOrFailure().CustomerId.Value.Should().Be(command.CustomerId);
+            result.ValueOrFailure().Balance.Should().Be(command.InitialBalance);
         }
     }
 }

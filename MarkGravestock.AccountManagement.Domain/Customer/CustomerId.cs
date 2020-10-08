@@ -1,7 +1,7 @@
 ﻿using System;
 using Mark.Gravestock.AccountManagement.Domain.Core;
 
-namespace Mark.Gravestock.AccountManagement.Domain.Accounts
+namespace Mark.Gravestock.AccountManagement.Domain.Customer
 {
     public class CustomerId : Identity<CustomerId>
     {

@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="NodaMoney" Version="1.0.5" />
       <PackageReference Include="Optional" Version="4.0.0" />
     </ItemGroup>
 

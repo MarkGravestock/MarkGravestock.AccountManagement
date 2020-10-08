@@ -3,7 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using Mark.Gravestock.AccountManagement.Domain.Accounts;
+using Mark.Gravestock.AccountManagement.Domain.Customer;
 using MarkGravestock.AccountManagement.Infrastructure.Database;
+using NodaMoney;
 using Optional;
 using Optional.Collections;
 
@@ -31,7 +33,7 @@ namespace MarkGravestock.AccountManagement.Infrastructure.Accounts
 
             var dynamicAccounts = await connection.QueryAsync<dynamic>("SELECT * FROM Account WHERE Id = @Id ", new {Id = accountId.Value});
 
-            var accounts = dynamicAccounts.Select(x => new Account(new AccountId(x.Id), new CustomerId(x.CustomerId), x.Balance));
+            var accounts = dynamicAccounts.Select(x => new Account(new AccountId(x.Id), new CustomerId(x.CustomerId), Money.PoundSterling(x.Balance)));
 
             return accounts.SingleOrNone();
         }

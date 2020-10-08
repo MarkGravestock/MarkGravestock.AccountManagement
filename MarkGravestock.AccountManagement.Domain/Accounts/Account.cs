@@ -1,31 +1,35 @@
 ﻿using System;
 using Mark.Gravestock.AccountManagement.Domain.Core;
+using Mark.Gravestock.AccountManagement.Domain.Customer;
+using NodaMoney;
 
 namespace Mark.Gravestock.AccountManagement.Domain.Accounts
 {
     public class Account
     {
-        public Account(AccountId accountId, CustomerId customerId, decimal balanceGbp)
+        private readonly Money balance;
+
+        public Account(AccountId accountId, CustomerId customerId, Money initialBalance)
         {
             Id = accountId;
             CustomerId = customerId;
 
-            if (balanceGbp < Decimal.Zero)
+            if (initialBalance < Decimal.Zero)
             {
                 throw new BusinessRuleValidationException("Account Balance can't be negative");
             }
 
-            Balance = balanceGbp;
+            balance = initialBalance;
         }
 
         public CustomerId CustomerId { get; }
 
         public AccountId Id { get; }
-        public decimal Balance { get; }
+        public decimal Balance => balance.Amount;
 
-        public static Account Open(CustomerId customerId, Decimal initialBalanceInGbp)
+        public static Account Open(CustomerId customerId, Money initialBalance)
         {
-            return new Account(AccountId.Create(), customerId, initialBalanceInGbp);
+            return new Account(AccountId.Create(), customerId, initialBalance);
         }
     }
 }

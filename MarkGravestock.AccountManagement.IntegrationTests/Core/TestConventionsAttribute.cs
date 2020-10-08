@@ -17,10 +17,9 @@ namespace MarkGravestock.AccountManagement.IntegrationTests.Core
             var builder = new ContainerBuilder();
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule(new InfrastructureModule(Configuration.DevelopmentConnectionString()));
-            var container = builder.Build();
-            
-            var fixture = new Fixture();
-            fixture.Customizations.Add(new AutofacSpecimenBuilder(container));
+
+            var fixture = new Fixture(); 
+            fixture.Customizations.Add(new AutofacSpecimenBuilder(builder.Build()));
             return fixture;
         }
     }
