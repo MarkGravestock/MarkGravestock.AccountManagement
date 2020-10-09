@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Globalization;
-using System.Threading;
 using AutoFixture.Xunit2;
 using FluentAssertions;
 using Mark.Gravestock.AccountManagement.Domain.Accounts;
