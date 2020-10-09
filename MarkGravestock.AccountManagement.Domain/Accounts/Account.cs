@@ -14,7 +14,7 @@ namespace Mark.Gravestock.AccountManagement.Domain.Accounts
             Id = accountId;
             CustomerId = customerId;
 
-            if (initialBalance < Decimal.Zero)
+            if (initialBalance.Amount < Decimal.Zero)
             {
                 throw new BusinessRuleValidationException("Account Balance can't be negative");
             }
