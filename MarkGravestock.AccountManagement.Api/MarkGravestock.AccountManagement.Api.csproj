@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
         <LangVersion>8</LangVersion>
         <Nullable>annotations</Nullable>
+        <TargetFrameworks>net5.0;netcoreapp3.1</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.0.1" />
+      <PackageReference Include="CuttingEdge.Conditions.NetStandard" Version="1.2.0" />
       <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="5.1.1" />
       <PackageReference Include="MediatR" Version="8.1.0" />
       <PackageReference Include="Optional" Version="4.0.0" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using CuttingEdge.Conditions;
 using Mark.Gravestock.AccountManagement.Application.Accounts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,7 @@ namespace MarkGravestock.AccountManagement.Api.Accounts
 
         public AccountsController(IMediator mediator)
         {
-//            Contract.Requires<ArgumentNullException>(mediator != null, nameof(mediator));
+            Condition.Requires(mediator).IsNotNull(nameof(mediator));
             
             this.mediator = mediator;
         }
