@@ -6,7 +6,8 @@
 - Use a Hexagonal Architecture
     - This pattern was first proposed by Alistair Cockburn and is also known as the Ports and Adapters pattern, and aims to produce loosely coupled designs
     where direction of the coupling in the system is from the outer infrastructural concerns to the inner application. [DIP]
-    
+    ![Hexagonal](Hexagonal.png)
+- Module structure showing direction of dependencies between modules      
     ![Dependencies](Dependencies.png)
     
 - Use Domain Driven Design tactical patterns for the Application and Domain Layers

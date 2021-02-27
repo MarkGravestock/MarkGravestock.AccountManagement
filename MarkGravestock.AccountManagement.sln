@@ -7,6 +7,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{4821E41E-AAEE-4EB0-B2A6-6C91B5E8C708}"
 ProjectSection(SolutionItems) = preProject
 	ReadMe.md = ReadMe.md
+	Dependencies.png = Dependencies.png
+	Hexagonal.png = Hexagonal.png
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkGravestock.AccountManagement.Domain", "MarkGravestock.AccountManagement.Domain\MarkGravestock.AccountManagement.Domain.csproj", "{E8C434BB-E1AC-4C76-8239-6DDA42CD4B1C}"
